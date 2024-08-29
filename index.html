@@ -79,11 +79,14 @@
 
         canvas {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; 
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px; 
+            border-radius: 20px; 
+            background-color: rgba(128, 128, 128, 0.5); 
+            transform: translate(-50%, -50%);
+            pointer-events: none;
             z-index: 1;
         }
     </style>
@@ -122,22 +125,16 @@
             var canvas = document.getElementById('overlay-canvas');
             var ctx = canvas.getContext('2d');
 
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = 400;
+            canvas.height = 400;
 
             function drawOverlay() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             }
 
             drawOverlay();
             window.addEventListener('resize', function () {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                drawOverlay();
             });
         });
     </script>
