@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>financially</title>
+
+    <meta property="og:title" content="financially">
+    <meta property="og:description" content="https://github.com/financially">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1248350692452728916/1248466218843902133/SGQYZLQ.png?ex=66d1d985&is=66d08805&hm=56ebd0e180d51d528a29e46b16a128be1b3abfb35feadcc0e5149d5463641f1a&">
+    <meta property="og:url" content="https://financially.github.io">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+            background: url('https://cdn.discordapp.com/attachments/1278790088486162578/1278791855647227964/Screenshot_2024-08-29_210204.png?ex=66d21739&is=66d0c5b9&hm=84c2ff4f02f3f5264c874645f83cf34ef0ef0999b97977fff4fa9c92d139d5f3&') no-repeat center center fixed;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .discord {
+            background-image: url('https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-o5mluhz2.png');
+        }
+
+        .github {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png');
+        }
+
+        .soundcloud {
+        background-image: url('https://static-00.iconduck.com/assets.00/soundcloud-icon-2048x2048-j8bxnm2n.png');
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="bob.mp3" preload="auto" loop></audio>
+
+    <div class="container">
+        <div class="profile">
+            <img src="https://cdn.discordapp.com/attachments/1248350692452728916/1248466218843902133/SGQYZLQ.png?ex=66d1d985&is=66d08805&hm=56ebd0e180d51d528a29e46b16a128be1b3abfb35feadcc0e5149d5463641f1a&" alt="Profile Picture" class="profile-pic">
+        </div>
+        <div class="links">
+            <a href="https://discord.gg/bmf" class="social-icon discord"></a>
+            <a href="https://github.com/financially" class="social-icon github"></a>
+            <a href="https://soundcloud.com/schizoloser" class="social-icon soundcloud"></a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var music = document.getElementById('background-music');
+            var isMuted = false;
+
+            function toggleMute() {
+                isMuted = !isMuted;
+                music.muted = isMuted;
+            }
+
+            music.play().catch(function(error) {
+                console.log('Playback failed: ' + error);
+            });
+
+            document.body.addEventListener('click', toggleMute);
+        });
+    </script>
+</body>
+</html>
