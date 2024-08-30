@@ -49,6 +49,16 @@
             z-index: 2;
         }
 
+        .typing-effect {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            height: 30px; 
+            position: relative;
+            z-index: 2;
+        }
+
         .links {
             display: flex;
             justify-content: center;
@@ -95,6 +105,7 @@
     <audio id="background-music" src="bob.mp3" preload="auto" loop></audio>
 
     <div class="container">
+        <div class="typing-effect" id="typing-effect"></div>
         <div class="profile">
             <img src="https://cdn.discordapp.com/attachments/1248350692452728916/1248466218843902133/SGQYZLQ.png?ex=66d1d985&is=66d08805&hm=56ebd0e180d51d528a29e46b16a128be1b3abfb35feadcc0e5149d5463641f1a&" alt="Profile Picture" class="profile-pic">
         </div>
@@ -130,12 +141,26 @@
 
             function drawOverlay() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             }
 
             drawOverlay();
             window.addEventListener('resize', function () {
             });
+
+            // Typing Effect
+            var text = "made by yjg";
+            var typingElement = document.getElementById('typing-effect');
+            var index = 0;
+
+            function typeText() {
+                if (index < text.length) {
+                    typingElement.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeText, 150);
+                }
+            }
+
+            typeText();
         });
     </script>
 </body>
