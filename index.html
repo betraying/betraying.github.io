@@ -166,37 +166,27 @@
             var deleting = false;
             var blinkInterval;
 
-            function startBlinkingCursor() {
-                clearInterval(blinkInterval);
-                blinkInterval = setInterval(function () {
-                    typingElement.innerHTML = typingElement.innerHTML.replace(/<span class="blinking-cursor">|<\/span>/g, '') + `<span class="blinking-cursor">|</span>`;
-                }, 500);
-            }
-
-            function stopBlinkingCursor() {
-                clearInterval(blinkInterval);
-                typingElement.innerHTML = typingElement.innerHTML.replace(/<span class="blinking-cursor">|<\/span>/g, '');
+            function updateText(content) {
+                typingElement.innerHTML = content + '<span class="blinking-cursor">|</span>';
             }
 
             function typeText() {
                 var currentText = texts[currentTextIndex];
-                
+
                 if (!deleting) {
                     if (currentIndex < currentText.length) {
-                        typingElement.textContent += currentText.charAt(currentIndex);
+                        updateText(currentText.substring(0, currentIndex + 1));
                         currentIndex++;
                         setTimeout(typeText, 150);
                     } else {
-                        startBlinkingCursor();
                         setTimeout(function() {
-                            stopBlinkingCursor();
                             deleting = true;
                             setTimeout(typeText, 100);
                         }, 2000);
                     }
                 } else {
                     if (currentIndex > 0) {
-                        typingElement.textContent = currentText.substring(0, currentIndex - 1);
+                        updateText(currentText.substring(0, currentIndex - 1));
                         currentIndex--;
                         setTimeout(typeText, 100);
                     } else {
