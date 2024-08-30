@@ -1,3 +1,2 @@
-#* Open-Source Biolink
-
-- Please credit me in the readme when using this repository.
+# Open-Source Biolink
+* Please credit me in the readme when using this repository.
