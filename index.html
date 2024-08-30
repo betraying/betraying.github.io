@@ -114,6 +114,14 @@
             pointer-events: none;
             z-index: 1;
         }
+
+        .volume-slider {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 150px;
+            z-index: 3;
+        }
     </style>
 </head>
 <body>
@@ -133,6 +141,8 @@
         <canvas id="overlay-canvas"></canvas>
     </div>
 
+    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1">
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var music = document.getElementById('background-music');
@@ -149,18 +159,9 @@
 
             document.body.addEventListener('click', toggleMute);
 
-            var canvas = document.getElementById('overlay-canvas');
-            var ctx = canvas.getContext('2d');
-
-            canvas.width = 400;
-            canvas.height = 400;
-
-            function drawOverlay() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-
-            drawOverlay();
-            window.addEventListener('resize', function () {
+            var volumeSlider = document.getElementById('volume-slider');
+            volumeSlider.addEventListener('input', function () {
+                music.volume = volumeSlider.value;
             });
 
             var typingElement = document.getElementById('typing-effect');
