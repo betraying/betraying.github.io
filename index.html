@@ -146,58 +146,65 @@
 
     <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.02" value="1">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var music = document.getElementById('background-music');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var music = document.getElementById('background-music');
 
-            music.play().catch(function(error) {
-                console.log('Playback failed: ' + error);
-            });
+        music.play().catch(function(error) {
+            console.log('Playback failed: ' + error);
+        });
 
-            var volumeSlider = document.getElementById('volume-slider');
-            volumeSlider.addEventListener('input', function () {
-                music.volume = volumeSlider.value;
-            });
+        var volumeSlider = document.getElementById('volume-slider');
 
-            var typingElement = document.getElementById('typing-effect');
-            var texts = ["made by yjg", "open source"];
-            var currentTextIndex = 0;
-            var currentIndex = 0;
-            var deleting = false;
+        var savedVolume = localStorage.getItem('volume') || 1;
+        music.volume = savedVolume;
+        volumeSlider.value = savedVolume;
 
-            function updateText(content) {
-                typingElement.innerHTML = content + '<span class="blinking-cursor">|</span>';
-            }
+        volumeSlider.addEventListener('input', function () {
+            var volumeValue = volumeSlider.value;
+            music.volume = volumeValue;
+            localStorage.setItem('volume', volumeValue);
+        });
 
-            function typeText() {
-                var currentText = texts[currentTextIndex];
+        var typingElement = document.getElementById('typing-effect');
+        var texts = ["made by yjg", "open source"];
+        var currentTextIndex = 0;
+        var currentIndex = 0;
+        var deleting = false;
 
-                if (!deleting) {
-                    if (currentIndex < currentText.length) {
-                        updateText(currentText.substring(0, currentIndex + 1));
-                        currentIndex++;
-                        setTimeout(typeText, 150);
-                    } else {
-                        setTimeout(function() {
-                            deleting = true;
-                            setTimeout(typeText, 100);
-                        }, 2000);
-                    }
+        function updateText(content) {
+            typingElement.innerHTML = content + '<span class="blinking-cursor">|</span>';
+        }
+
+        function typeText() {
+            var currentText = texts[currentTextIndex];
+
+            if (!deleting) {
+                if (currentIndex < currentText.length) {
+                    updateText(currentText.substring(0, currentIndex + 1));
+                    currentIndex++;
+                    setTimeout(typeText, 150);
                 } else {
-                    if (currentIndex > 0) {
-                        updateText(currentText.substring(0, currentIndex - 1));
-                        currentIndex--;
+                    setTimeout(function () {
+                        deleting = true;
                         setTimeout(typeText, 100);
-                    } else {
-                        deleting = false;
-                        currentTextIndex = (currentTextIndex + 1) % texts.length;
-                        setTimeout(typeText, 500);
-                    }
+                    }, 2000);
+                }
+            } else {
+                if (currentIndex > 0) {
+                    updateText(currentText.substring(0, currentIndex - 1));
+                    currentIndex--;
+                    setTimeout(typeText, 100);
+                } else {
+                    deleting = false;
+                    currentTextIndex = (currentTextIndex + 1) % texts.length;
+                    setTimeout(typeText, 500);
                 }
             }
+        }
 
-            typeText();
-        });
-    </script>
+        typeText();
+    });
+</script>
 </body>
 </html>
