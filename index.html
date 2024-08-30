@@ -55,6 +55,7 @@
             height: 50px;
             position: relative;
             z-index: 2;
+            text-decoration: underline;
         }
 
         .links {
@@ -162,14 +163,14 @@
                     } else {
                         setTimeout(function() {
                             deleting = true;
-                            setTimeout(typeText, 100); 
+                            setTimeout(typeText, 100);
                         }, 1000);
                     }
                 } else {
                     if (currentIndex > 0) {
                         typingElement.textContent = currentText.substring(0, currentIndex - 1);
                         currentIndex--;
-                        setTimeout(typeText, 100); 
+                        setTimeout(typeText, 100);
                     } else {
                         deleting = false;
                         currentTextIndex = (currentTextIndex + 1) % texts.length;
