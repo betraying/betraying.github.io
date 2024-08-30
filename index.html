@@ -14,8 +14,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
-    <link rel="manifest" href="site.webmanifest">
-    
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -50,11 +48,11 @@
         }
 
         .typing-effect {
-            font-size: 24px;
+            font-size: 36px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 10px;
-            height: 30px; 
+            height: 50px;
             position: relative;
             z-index: 2;
         }
@@ -147,16 +145,36 @@
             window.addEventListener('resize', function () {
             });
 
-            // Typing Effect
-            var text = "made by yjg";
             var typingElement = document.getElementById('typing-effect');
-            var index = 0;
+            var texts = ["made by yjg", "open-source"];
+            var currentTextIndex = 0;
+            var currentIndex = 0;
+            var deleting = false;
 
             function typeText() {
-                if (index < text.length) {
-                    typingElement.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeText, 150);
+                var currentText = texts[currentTextIndex];
+                
+                if (!deleting) {
+                    if (currentIndex < currentText.length) {
+                        typingElement.textContent += currentText.charAt(currentIndex);
+                        currentIndex++;
+                        setTimeout(typeText, 150);
+                    } else {
+                        setTimeout(function() {
+                            deleting = true;
+                            setTimeout(typeText, 100); 
+                        }, 1000);
+                    }
+                } else {
+                    if (currentIndex > 0) {
+                        typingElement.textContent = currentText.substring(0, currentIndex - 1);
+                        currentIndex--;
+                        setTimeout(typeText, 100); 
+                    } else {
+                        deleting = false;
+                        currentTextIndex = (currentTextIndex + 1) % texts.length;
+                        setTimeout(typeText, 500);
+                    }
                 }
             }
 
