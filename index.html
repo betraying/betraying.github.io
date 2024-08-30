@@ -116,12 +116,59 @@
         }
 
         .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 150px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 5px;
             position: fixed;
             bottom: 20px;
             left: 20px;
-            width: 150px;
             z-index: 3;
         }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #007aff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #007aff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .volume-slider::-ms-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #007aff;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .volume-slider:hover::-webkit-slider-thumb {
+            background: #0056b3;
+        }
+
+        .volume-slider:hover::-moz-range-thumb {
+            background: #0056b3;
+        }
+
+        .volume-slider:hover::-ms-thumb {
+            background: #0056b3;
+        }
+
     </style>
 </head>
 <body>
@@ -146,18 +193,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var music = document.getElementById('background-music');
-            var isMuted = false;
-
-            function toggleMute() {
-                isMuted = !isMuted;
-                music.muted = isMuted;
-            }
 
             music.play().catch(function(error) {
                 console.log('Playback failed: ' + error);
             });
-
-            document.body.addEventListener('click', toggleMute);
 
             var volumeSlider = document.getElementById('volume-slider');
             volumeSlider.addEventListener('input', function () {
