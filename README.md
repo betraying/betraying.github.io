@@ -1,5 +1,3 @@
-# open-source biolink
+# open source biolink
 
-## please credit me
-
-### for help setting up dm @yjg on discord
+- Please credit me in the readme when using this repository.
