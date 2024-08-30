@@ -89,14 +89,13 @@
             display: inline-block;
             width: 8px;
             background-color: white;
-            animation: blink 1s steps(2) infinite;
+            animation: blink 0.8s linear infinite;
             margin-left: 3px;
         }
 
         @keyframes blink {
-            50% {
-                opacity: 0;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         canvas {
@@ -164,7 +163,6 @@
             var currentTextIndex = 0;
             var currentIndex = 0;
             var deleting = false;
-            var blinkInterval;
 
             function updateText(content) {
                 typingElement.innerHTML = content + '<span class="blinking-cursor">|</span>';
