@@ -36,7 +36,7 @@
         }
 
         .profile {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .profile-pic {
@@ -44,6 +44,14 @@
             width: 150px;
             height: 150px;
             object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .discord-presence {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
             position: relative;
             z-index: 2;
         }
@@ -123,12 +131,6 @@
             width: 150px;
             z-index: 3;
             pointer-events: auto;
-
-        }
-
-        .discord-presence {
-            margin-top: 10px;
-            display: inline-block;
         }
     </style>
 </head>
@@ -143,7 +145,7 @@
 
         <div class="discord-presence">
             <a href="https://discord.com/users/289306914553331712" target="_blank">
-                <img width="50%" align="center" alt="Discord Presence" src="https://lanyard.cnrad.dev/api/289306914553331712?bg=1f1f1f&borderRadius=5px">
+                <img alt="Discord Presence" src="https://lanyard.cnrad.dev/api/289306914553331712?bg=1f1f1f&borderRadius=5px" style="width: auto; height: 100px;">
             </a>
         </div>
 
@@ -156,7 +158,7 @@
         <canvas id="overlay-canvas"></canvas>
     </div>
 
-    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.02" value="1">
+    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1">
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
